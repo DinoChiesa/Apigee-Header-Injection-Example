@@ -1,0 +1,11 @@
+<AssignMessage name='AM-AddHeaders'>
+  <AssignTo>request</AssignTo>
+  <Set>
+    <Headers>
+      <!-- these context variables have been set by a preceding VerifyJWT policy -->
+      <Header name='injected-header-sub'>{jwt.VerifyJWT-1.decoded.claim.sub}</Header>
+      <Header name='injected-header-jti'>{jwt.VerifyJWT-1.decoded.claim.jti}</Header>
+      <Header name='injected-header-email'>{jwt.VerifyJWT-1.decoded.claim.email}</Header>
+    </Headers>
+  </Set>
+</AssignMessage>

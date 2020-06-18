@@ -1,0 +1,9 @@
+<VerifyJWT name='VerifyJWT-1'>
+  <Algorithm>RS256</Algorithm>
+  <Source>request.header.jwt</Source>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <PublicKey>
+    <JWKS uri="https://www.googleapis.com/oauth2/v3/certs"/>
+  </PublicKey>
+  <Issuer>accounts.google.com</Issuer>
+</VerifyJWT>

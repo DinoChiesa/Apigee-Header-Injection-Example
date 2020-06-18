@@ -1,0 +1,8 @@
+<AssignMessage name='AM-RemoveHeader'>
+  <AssignTo>request</AssignTo>
+  <Remove>
+    <Headers>
+      <Header name='jwt'/>
+    </Headers>
+  </Remove>
+</AssignMessage>

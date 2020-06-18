@@ -1,0 +1,76 @@
+<ProxyEndpoint name="endpoint1">
+
+  <HTTPProxyConnection>
+    <BasePath>/header-injection</BasePath>
+    <Properties/>
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <FaultRules/>
+
+  <PreFlow name="PreFlow">
+    <Request/>
+    <Response/>
+  </PreFlow>
+
+  <PostFlow name="PostFlow">
+    <Request/>
+    <Response/>
+  </PostFlow>
+
+  <PostClientFlow name="PostFlow">
+    <Request/>
+    <Response>
+    </Response>
+  </PostClientFlow>
+
+  <Flows>
+    <Flow name="t1">
+      <!--
+      1. Obtain a JWT ID from Google Signin, from this page:
+         https://dinochiesa.github.io/goog-signin-widget
+
+      2. set the value of the JWT into the shell variable "JWT"
+
+      3. invoke this endpoint:
+         curl -i https://$ORG-$ENV.apigee.net/header-injection/t1 -H JWT:$JWT
+
+      This proxy connects to a service that "echos" the request that it
+      receives.  You'll see the two injected headers, injected-header-sub and
+      injected-header-email, both extracted from the JWT ID Token payload.
+
+      -->
+      <Request>
+        <Step>
+          <Name>RF-InvalidRequest</Name>
+          <Condition>request.header.jwt = null</Condition>
+        </Step>
+        <Step>
+          <Name>VerifyJWT-1</Name>
+        </Step>
+        <Step>
+          <Name>AM-AddHeaders</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+      <Condition>proxy.pathsuffix MatchesPath "/t1" and request.verb = "GET"</Condition>
+    </Flow>
+
+    <Flow name="unknown request">
+      <Request>
+        <Step>
+          <Name>RF-UnknownRequest</Name>
+        </Step>
+      </Request>
+      <Response>
+      </Response>
+    </Flow>
+
+  </Flows>
+
+  <RouteRule name="default">
+    <TargetEndpoint>target-1</TargetEndpoint>
+  </RouteRule>
+
+</ProxyEndpoint>
