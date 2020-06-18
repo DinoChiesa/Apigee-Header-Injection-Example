@@ -47,6 +47,14 @@ the corresponding claims in the JWT ID Token passed on input:
    all with values that mnirror those in the JWT ID Token payload.
 
 
+## A Screencast
+
+Not interested in `git clone`? [Here's a quick screencast](https://youtu.be/3tFmGo-Wgc0) showing this in action.
+
+[![Heasder Injection](http://img.youtube.com/vi/3tFmGo-Wgc0/0.jpg)](https://youtu.be/3tFmGo-Wgc0
+"Header Injection")
+
+
 ## Comments and Highlights
 
 Header Injection is a nice general capability. Apigee can set and unset any
